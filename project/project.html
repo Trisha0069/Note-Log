@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Note Log App</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Note Log App</h1>
+    <centre>
+        <h1><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAdDlIYqOyK6BIPDtW0Ttd1aAPSM5mSZw9JohErOiEhrB28gDIz1PMKPKXyMOCxqG4qVA&usqp=CAU"height="200px"width="225px"></h1></centre>
+  </header>
+  <main>
+    <div id="notes-container">
+      <!-- Display note entries here -->
+    </div>
+    <div id="entry-form">
+      <input type="text" id="note-input" placeholder="Enter your note">
+      <button id="add-note-btn">Add Note</button>
+    </div>
+  </main>
+  <script src="script.js"></script>
+  <style>
+    /* styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f2f2f2;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#entry-form {
+  margin-top: 20px;
+}
+
+#entry-form input[type="text"] {
+  width: 70%;
+  padding: 10px;
+}
+
+#entry-form button {
+  padding: 10px 20px;
+}
+
+#notes-container {
+  margin-top: 20px;
+}
+
+.note-entry {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.note-entry .note-text {
+  font-weight: bold;
+}
+
+.note-entry .note-metadata {
+  color: #777;
+  font-size: 12px;
+}
+
+  </style>
+  <script>
+    // script.js
+
+// Get necessary elements from the DOM
+const noteInput = document.getElementById('note-input');
+const addNoteBtn = document.getElementById('add-note-btn');
+const notesContainer = document.getElementById('notes-container');
+
+// Event listener for adding a new note
+addNoteBtn.addEventListener('click', addNote);
+
+// Function to add a new note
+function addNote() {
+  const noteText = noteInput.value.trim();
+  if (noteText !== '') {
+    const noteEntry = createNoteEntry(noteText);
+    notesContainer.prepend(noteEntry);
+    noteInput.value = '';
+  }
+}
+
+// Function to create a new note entry
+function createNoteEntry(text) {
+  const noteEntry = document.createElement('div');
+  noteEntry.classList.add('note-entry');
+
+  const noteText = document.createElement('span');
+  noteText.classList.add('note-text');
+  noteText.textContent = text;
+
+  const noteMetadata = document.createElement('span');
+  noteMetadata.classList.add('note-metadata');
+  const date = new Date();
+  noteMetadata.textContent = `${date.toLocaleDateString()} ${date.toLocaleTimeString()} - Location: XYZ`; // Replace XYZ with actual location data
+
+  noteEntry.appendChild(noteText);
+  noteEntry.appendChild(noteMetadata);
+
+  return noteEntry;
+}
+
+  </script>
+  <body background="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRIIe8B3MmjZyVWp-vAxjojMlZ5a35BPb52g&usqp=CAU" height="100%"width="100%"></body>
+</body>
+</html>
